@@ -1,15 +1,18 @@
 package qtriptest.tests;
 
 import qtriptest.DP;
+import qtriptest.DriverSingleton;
 import qtriptest.pages.HomePage;
 import qtriptest.pages.LoginPage;
 import qtriptest.pages.RegisterPage;
 import java.net.MalformedURLException;
-import java.net.URL;
 import org.apache.logging.log4j.core.util.Assert;
-import org.openqa.selenium.remote.BrowserType;
-import org.openqa.selenium.remote.DesiredCapabilities;
+//import java.net.URL;
+//import org.apache.logging.log4j.core.util.Assert;
+//import org.openqa.selenium.remote.BrowserType;
+//import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
@@ -27,17 +30,15 @@ public class testCase_01 {
 	}
 
 	// Iinitialize webdriver for our Unit Tests
-	@BeforeSuite(alwaysRun = true, enabled = true)
+	@BeforeTest(alwaysRun = true, enabled = true)
 	public static void createDriver() throws MalformedURLException {
 		logStatus("driver", "Initializing driver", "Started");
-		final DesiredCapabilities capabilities = new DesiredCapabilities();
-		capabilities.setBrowserName(BrowserType.CHROME);
-		driver = new RemoteWebDriver(new URL("http://localhost:8082/wd/hub"), capabilities);
-		driver.manage().window().maximize();
+		DriverSingleton driverSingleton = new DriverSingleton();
+    	driver = driverSingleton.getInstance();
 		logStatus("driver", "Initializing driver", "Success");
 	}
 
-	@Test(description = "Verify user registratiaon, login, logout", dataProvider = "data-provider", dataProviderClass= DP.class, priority = 1, groups = {"Sanity"}, enabled = true)
+	@Test(description = "Verify user registratiaon, login, logout", dataProvider = "data-provider", dataProviderClass= DP.class, priority = 1, groups = {"Login Flow"}, enabled = true)
     public static void TestCase01(String userName, String password) throws InterruptedException {
 		Boolean status;
 		try {
@@ -80,7 +81,7 @@ public class testCase_01 {
 	}
 
 	
-
+	@AfterTest(enabled = true)
 	public void quitDriver() {
 		driver.close();
 		driver.quit();
