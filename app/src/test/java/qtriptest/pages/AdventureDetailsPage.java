@@ -1,5 +1,6 @@
 package qtriptest.pages;
 
+import qtriptest.SeleniumWrapper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -33,8 +34,9 @@ public class AdventureDetailsPage {
     public Boolean enterName(String name) {
         Boolean status = false;
         try {
-            nameTextBox.clear();
-            nameTextBox.sendKeys(name);
+            // nameTextBox.clear();
+            // nameTextBox.sendKeys(name);
+            SeleniumWrapper.enterText(nameTextBox, name);
             Thread.sleep(2000);
             status = true;
             return status;
@@ -47,8 +49,9 @@ public class AdventureDetailsPage {
     public Boolean enterDate(String date) {
         Boolean status = false;
         try {
-            dateTextBox.clear();
-            dateTextBox.sendKeys(date);
+            // dateTextBox.clear();
+            // dateTextBox.sendKeys(date);
+            SeleniumWrapper.enterText(dateTextBox, date);
             Thread.sleep(2000);
             status = true;
             return status;
@@ -61,8 +64,9 @@ public class AdventureDetailsPage {
     public Boolean enterPersons(String number) {
         Boolean status = false;
         try {
-            numberTextBox.clear();
-            numberTextBox.sendKeys(number);
+            // numberTextBox.clear();
+            // numberTextBox.sendKeys(number);
+            SeleniumWrapper.enterText(numberTextBox,number);
             Thread.sleep(2000);
             status = true;
             return status;
@@ -75,7 +79,8 @@ public class AdventureDetailsPage {
     public Boolean clickReserveBtn() {
         Boolean status = false;
         try {
-            reserveButton.click();
+            //reserveButton.click();
+            SeleniumWrapper.clickAction(reserveButton, driver);
             Thread.sleep(2000);
             status = true;
             return status;
@@ -88,7 +93,8 @@ public class AdventureDetailsPage {
     public Boolean clickHereBtn() {
         Boolean status = false;
         try {
-            clickherebutton.click();
+            //clickherebutton.click();
+            SeleniumWrapper.clickAction(clickherebutton, driver);
             Thread.sleep(2000);
             status = true;
             return status;

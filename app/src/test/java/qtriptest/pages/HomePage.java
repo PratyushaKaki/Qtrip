@@ -1,6 +1,7 @@
 package qtriptest.pages;
 
 import org.openqa.selenium.WebElement;
+import qtriptest.SeleniumWrapper;
 import java.util.ArrayList;
 import java.util.List;
 import org.openqa.selenium.By;
@@ -38,25 +39,29 @@ public class HomePage {
     }
 
     public void navigateToHomePage() throws InterruptedException {
-        if(driver.getCurrentUrl() != url){
-            driver.get(url);
-            Thread.sleep(4000);
-            registerbtn.click();
-            Thread.sleep(2000);
-        }
+        // if(driver.getCurrentUrl() != url){
+        //     driver.get(url);
+        //     Thread.sleep(4000);
+        //     registerbtn.click();
+        //     Thread.sleep(2000);
+        // }
+        SeleniumWrapper.navigateToUrl(url, driver);
+        Thread.sleep(2000);
+        SeleniumWrapper.clickAction(registerbtn, driver);
+        Thread.sleep(2000);
 
     }
 
-    public void navigateToHome() {
-        if (!this.driver.getCurrentUrl().equals(this.url)) {
-            this.driver.get(this.url);
-        }
+    public void navigateToHome() throws InterruptedException {
+        SeleniumWrapper.navigateToUrl(url, driver);
+        Thread.sleep(2000);
     }
 
     public Boolean searchForPlace(String place) {
         try {
-            searchBox.clear();
-            searchBox.sendKeys(place);
+            // searchBox.clear();
+            // searchBox.sendKeys(place);
+            SeleniumWrapper.enterText(searchBox, place);
             Thread.sleep(2000);
             return true;
         } catch(Exception e) {
@@ -87,11 +92,13 @@ public class HomePage {
     }
 
     public void clickSearchResult() {
-        result.click();
+        //result.click();
+        SeleniumWrapper.clickAction(result, driver);
     }
 
     public void clickOnLogout() throws InterruptedException {
-        logoutbtn.click();
+        //logoutbtn.click();
+        SeleniumWrapper.clickAction(logoutbtn, driver);
         Thread.sleep(1000);
         
     }

@@ -1,5 +1,6 @@
 package qtriptest.pages;
 
+import qtriptest.SeleniumWrapper;
 import java.util.List;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -43,8 +44,8 @@ public class HistoryPage {
     public Boolean cancelBtn() {
         Boolean status = false;
         try {
-            //wait.until(ExpectedConditions.elementToBeClickable(cancelButton));
-            cancelButton.click();
+            //cancelButton.click();
+            SeleniumWrapper.clickAction(cancelButton, driver);
             Thread.sleep(2000);
             status = true;
             return status;

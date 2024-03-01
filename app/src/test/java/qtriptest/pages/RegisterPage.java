@@ -1,5 +1,6 @@
 package qtriptest.pages;
 
+import qtriptest.SeleniumWrapper;
 import java.util.UUID;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -37,9 +38,10 @@ public class RegisterPage {
     }
 
     public void navigateToHomePage() throws InterruptedException {
-        if(driver.getCurrentUrl() != url){
-            driver.get(url);
-        }
+        // if(driver.getCurrentUrl() != url){
+        //     driver.get(url);
+        // }
+        SeleniumWrapper.navigateToUrl(url, driver);
     }
 
     String emailAddress = "";
@@ -51,30 +53,33 @@ public class RegisterPage {
         System.out.println("in side registration");
         if(makeUserDynamic) {
             emailAddress = email.split("@")[0] + UUID.randomUUID().toString() + "@" + email.split("@")[1];
+            //kakipratyusha166@ gmail.com
         } else {
             emailAddress = email;
         }
+        // emailTextBox.clear();
+        // emailTextBox.sendKeys(emailAddress);
+        // Thread.sleep(2000);
 
-        // WebElement emailTextBox = driver.findElement(By.xpath("//input[@placeholder ='name@example.com']"));
-        // wait.until(ExpectedConditions.visibilityOf(emailTextBox));
-        emailTextBox.clear();
-        emailTextBox.sendKeys(emailAddress);
+        // passwordTextBox.clear();
+        // passwordTextBox.sendKeys(password);
+        // Thread.sleep(2000);
+
+        // confirmpasswordTextBox.clear();
+        // confirmpasswordTextBox.sendKeys(password);
+        // Thread.sleep(2000);
+
+        // registerBtn.click();
+        // Thread.sleep(3000);
+
+        SeleniumWrapper.enterText(emailTextBox, emailAddress);
         Thread.sleep(2000);
-
-        //WebElement passwordTextBox = driver.findElement(By.xpath("//input[@placeholder ='Type to create account password']"));
-        passwordTextBox.clear();
-        passwordTextBox.sendKeys(password);
+        SeleniumWrapper.enterText(passwordTextBox,password);
         Thread.sleep(2000);
-
-        //WebElement  confirmpasswordTextBox= driver.findElement(By.xpath("//input[@placeholder ='Retype Password to Confirm']"));
-        confirmpasswordTextBox.clear();
-        confirmpasswordTextBox.sendKeys(password);
+        SeleniumWrapper.enterText(confirmpasswordTextBox, password);
         Thread.sleep(2000);
-
-
-        //WebElement registerBtn= driver.findElement(By.xpath("//button[@class='btn btn-primary btn-login']"));
-        registerBtn.click();
-        Thread.sleep(3000);
+        SeleniumWrapper.clickAction(registerBtn, driver);
+        Thread.sleep(2000);
 
         this.user_email = emailAddress;
         return this.driver.getCurrentUrl().endsWith("/login");

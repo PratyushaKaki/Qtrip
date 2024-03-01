@@ -9,7 +9,9 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class DriverSingleton {
     static RemoteWebDriver driver;
-    public static void createDriver() throws MalformedURLException {
+    public static DriverSingleton instanceOfSingleton;
+
+    private DriverSingleton() throws MalformedURLException {
         final DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setBrowserName(BrowserType.CHROME);
         driver = new RemoteWebDriver(new URL("http://localhost:8082/wd/hub"), capabilities); // This line creates a new instance of RemoteWebDriver in each test class
@@ -17,10 +19,14 @@ public class DriverSingleton {
         driver.get("https://qtripdynamic-qa-frontend.vercel.app/");
     }
 
-    public RemoteWebDriver getInstance() throws MalformedURLException{
-        if(driver==null){
-            createDriver();
-        }
+    public static DriverSingleton getInstanceOfSingletonBrowserClass() throws MalformedURLException {
+        if(instanceOfSingleton == null) 
+            instanceOfSingleton = new DriverSingleton();
+        return instanceOfSingleton;
+    }
+
+    public RemoteWebDriver getDriver() {
         return driver;
     }
+
 }

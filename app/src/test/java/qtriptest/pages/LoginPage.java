@@ -1,6 +1,7 @@
 package qtriptest.pages;
 
 import org.openqa.selenium.WebElement;
+import qtriptest.SeleniumWrapper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -30,15 +31,22 @@ public class LoginPage {
 
 
     public Boolean loginUser(String email, String password) throws InterruptedException{
-        emailTextBox.clear();
-        emailTextBox.sendKeys(email);
-        Thread.sleep(2000);
+        // emailTextBox.clear();
+        // emailTextBox.sendKeys(email);
+        // Thread.sleep(2000);
 
-        passwordTextBox.clear();
-        passwordTextBox.sendKeys(password);
-        Thread.sleep(2000);
+        // passwordTextBox.clear();
+        // passwordTextBox.sendKeys(password);
+        // Thread.sleep(2000);
 
-        loginBtn.click();
+        // loginBtn.click();
+        // Thread.sleep(2000);
+
+        SeleniumWrapper.enterText(emailTextBox, email);
+        Thread.sleep(2000);
+        SeleniumWrapper.enterText(passwordTextBox, password);
+        Thread.sleep(2000);
+        SeleniumWrapper.clickAction(loginBtn, driver);
         Thread.sleep(2000);
 
         return driver.getCurrentUrl().contains("qtripdynamic");

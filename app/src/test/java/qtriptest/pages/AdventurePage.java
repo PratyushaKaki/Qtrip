@@ -1,5 +1,6 @@
 package qtriptest.pages;
 
+import qtriptest.SeleniumWrapper;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -77,6 +78,7 @@ public class AdventurePage {
         Boolean status = false;
         try {
             clearCategoryBtn.click();
+            //SeleniumWrapper.clickAction(clearCategoryBtn, driver);
             Thread.sleep(2000);
             status = true;
             return status;
@@ -110,6 +112,7 @@ public class AdventurePage {
         Boolean status = false;
         try {
             advResult.click();
+            //SeleniumWrapper.clickAction(advResult, driver);
             Thread.sleep(2000);
             status = true;
             return status;

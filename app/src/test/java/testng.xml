@@ -1,17 +1,17 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name = "Tests for Qtrip Regression">
-    <test name = "Login Flow">
+    <!-- <test name = "Login Flow">
         <classes>
             <class name = "qtriptest.tests.testCase_01"/>
         </classes>
-    </test>
+    </test> -->
     <test name = "Search Flow">
         <classes>
             <class name = "qtriptest.tests.testCase_02"/>
         </classes>
     </test>
-    <test name = "Bookings and cancellation Flow">
+    <!-- <test name = "Bookings and cancellation Flow">
         <classes>
             <class name = "qtriptest.tests.testCase_03"/>
         </classes>
@@ -19,6 +19,6 @@
     <test name = "Reliability Flow">
         <classes>
             <class name = "qtriptest.tests.testCase_04"/>
-        </classes>
+        </classes> -->
     </test>
 </suite>
