@@ -104,7 +104,7 @@ public class testCase_01 {
 	}
 
 	
-	@AfterTest(enabled = true)
+	@AfterSuite(alwaysRun = true, enabled = true)
 	public void quitDriver() {
 		//driver.close();
 		driver.quit();
